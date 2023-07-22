@@ -1,0 +1,27 @@
+header{
+    position: fixed;
+    top: 0; left: 0;
+    height: 100px;
+    width: 100%;
+    padding-left: 30px;
+    /* background-color: aliceblue; */
+}
+
+#IconStyle{
+    margin-top:20px;
+    margin-right: 20px;
+    
+}
+
+#pjtTitle {
+    font-size: 25px;
+    margin-left:75px;
+    margin-top:-50px;
+    font-weight: bold;
+ 
+}
+
+#navMenu {
+ margin-top:-30px;
+
+}

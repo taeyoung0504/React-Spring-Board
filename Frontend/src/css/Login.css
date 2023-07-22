@@ -1,0 +1,15 @@
+.login_input{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex; 
+    margin-top:200px;
+}
+
+#titleLogin {
+    margin-left:20px;
+    color: black;
+}
+#singtitleicon{
+    margin-left:-40px;
+}
