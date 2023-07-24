@@ -3,11 +3,13 @@
     justify-content: center;
     flex-direction: column;
     display: flex; 
-    margin-top:200px;
+    margin-top:50px;
+    margin-bottom: 80px;
 }
 
 .joinbutton{
     height:20px;
+    
 }
 
 
@@ -22,3 +24,22 @@
     margin-left:20px;
     color: black;
 }
+
+@media screen and (min-width: 501px) and (max-width: 600px) and (min-height:200px){
+    .join_input{
+        margin-top:200px;
+       height: 100px;
+    }
+    .joinbutton{
+        height:20px;
+        margin-bottom: 50px;
+    }
+    
+  
+  }
+  
+  /* For larger screen sizes */
+  @media screen and (min-width: 961px) {
+    /* Add any styles specific to larger screens here, if needed */
+  }
+  

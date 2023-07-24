@@ -3,7 +3,7 @@
     justify-content: center;
     flex-direction: column;
     display: flex; 
-    margin-top:200px;
+    margin-top:100px;
 }
 
 #writetitleicon{
@@ -21,3 +21,27 @@
     color:orange;
     font-size:50px;
 }
+
+
+@media screen and (max-width: 800px) {
+    .write_input {
+      margin-top: 80px; /* Adjust the margin-top for mobile view */
+    }
+  
+    #writetitleicon {
+      font-size: 30px; /* Adjust the icon size for mobile view */
+    }
+  
+    #titlewrite {
+      font-size: 40px;
+    
+    }
+  
+    #writetitleicon {
+      font-size: 30px; /* Adjust the icon size for mobile view */
+      margin-left: -10px; /* Adjust the icon's left margin for mobile view */
+    }
+    TextArea{
+        width:10px;
+    }
+  }

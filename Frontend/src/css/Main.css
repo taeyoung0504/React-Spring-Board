@@ -1,0 +1,37 @@
+
+#main_area{
+    border:1px solid grey;
+    padding:10px 10px 10px 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-left:15%;
+    margin-top:50px;
+    height: 500px; 
+    width:1800px;
+    background-image: url('../img/pexels-ánh-đặng-16398261.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#cardSection{
+    margin-left:280px;
+    margin-top:50px;
+
+}
+
+
+@media screen and (max-width: 600px) {
+    #main_area {
+        width: 93%;
+        height: 50%;
+        margin-left:1px;
+        margin-top:-5px;
+    }
+}
+
+/* For larger screen sizes (min-width: 961px) */
+@media screen and (min-width: 961px) {
+    /* Add any styles specific to larger screens here, if needed */
+}

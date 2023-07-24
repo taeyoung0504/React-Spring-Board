@@ -26,12 +26,12 @@ const containsSpecialCharactersOrUppercase = (str) => {
 
 const Join = () => {
   const [inputs, setInputs] = useState({
-      nickname: "",
+      username: "",
       password: "",
       email:"",
       password2:""
   });
-  const {nickname, password, email,password2} = inputs;
+  const {username, password, email,password2} = inputs;
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -46,7 +46,7 @@ const Join = () => {
   const onSubmit = () => {
     
 
-    if (!nickname || !password || !password2 || !email) {
+    if (!username || !password || !password2 || !email) {
       Swal.fire(
         'Do you have Null?',
         '<b>빈 값이 존재합니다. 모두 입력해주세요</b>',
@@ -56,7 +56,7 @@ const Join = () => {
     }
 
     //아이디 검증
-    if (containsSpecialCharactersOrUppercase(nickname)) {
+    if (containsSpecialCharactersOrUppercase(username)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -87,7 +87,7 @@ const Join = () => {
   }
 
   axios
-  .post("/auth/signup", { nickname, password, email }, {
+  .post("/api/user/signup", { username, password, email }, {
     headers: { "Content-Type": "application/json" }
   })
       .then((response) => {
@@ -95,16 +95,17 @@ const Join = () => {
           icon: 'success',
           title: '회원가입 성공',
           html: '<b> 회원가입에 성공하였습니다.</b>',
-      })
-        window.location.href = "http://localhost:3000";
-
+      }).then(() => {
         setInputs({
-          nickname: "",
+          username: "",
           password: "",
           email:"",
           password2:"",
           });
+          window.location.href = "http://192.168.10.67:3000";
+        });
       })
+
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -118,7 +119,7 @@ const Join = () => {
   return (
     <div className="join_input">
       <div id="singtitleicon"><AiFillBell/><strong id="titleSign">Sign Up</strong></div>
-      <InputText id="nickname" value={nickname} label="nickname" placeholder="Input user UserName" name="nickname" type="nickname" height="40px"  onChange={onChange}/><br />
+      <InputText id="username" value={username} label="username" placeholder="Input user UserName" name="username" type="username" height="40px"  onChange={onChange}/><br />
       <InputText id="password" value={password} label="password"  placeholder="Input user Password" name="password" type="password" height="40px"  onChange={onChange}/><br />
       <InputText id="password2" value={password2} label="password2"  placeholder="Input user Re-Password" name="password2" type="password" height="40px" onChange={onChange} /><br />
       <InputText id="email" value={email} label="email"  placeholder="Input user Email" name="email" type="email" height="40px"  onChange={onChange}/><br />

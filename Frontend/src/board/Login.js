@@ -13,10 +13,10 @@ const LoginbuttonStyle = {
 
 const Login = ({ onLoginSuccess }) => {
   const [inputs, setInputs] = useState({
-    email: "",
+    username: "",
     password: "",
   });
-  const { email, password } = inputs;
+  const { username, password } = inputs;
   const [errorMessage, setErrorMessage] = useState(null);
 
   const onChange = (e) => {
@@ -28,24 +28,31 @@ const Login = ({ onLoginSuccess }) => {
       [id]: value,
     });
   };
-
   const onSubmit = () => {
-    axios.post("/auth/login", { email, password })
+    axios.post("/api/login", { username, password }, { headers: { "Content-Type": "application/json" } })
       .then((response) => {
-        Swal.fire({
-          icon: 'success',
-          title: '로그인 성공',
-          html: '<b> 로그인에 성공하였습니다.</b>',
-      })
-
-        sessionStorage.setItem("userData", JSON.stringify(response.data));
-        window.location.href = "http://localhost:3000";
-
-        if (onLoginSuccess) {
-          onLoginSuccess(response.data);
+        if (response.data !== null) {
+          Swal.fire({
+            icon: 'success',
+            title: '로그인 성공',
+            html: '<b> 로그인에 성공하였습니다.</b>',
+          }).then(() => {
+            sessionStorage.setItem("userData", JSON.stringify(response.data));
+            window.location.href = "http://192.168.10.67:3000";
+          });
+  
+          if (onLoginSuccess) {
+            onLoginSuccess(response.data);
+          }
+  
+          setErrorMessage(null);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            html: '<b> 아이디 또는 비밀번호가 틀렸습니다.</b>',
+          });
         }
-
-        setErrorMessage(null);
       })
       .catch((error) => {
         Swal.fire({
@@ -53,14 +60,14 @@ const Login = ({ onLoginSuccess }) => {
           title: 'Oops...',
           html: '<b> 아이디 또는 비밀번호가 틀렸습니다.</b>',
         });
-
+        return;
       });
   };
 
   return (
     <div className="join_input">
       <div id="singtitleicon" ><AiFillBulb /><strong id="titleLogin">Login</strong></div>
-      <InputText id="email" value={email} label="email" placeholder="Input user Email" name="email" type="email" height="40px" onChange={onChange} /><br />
+      <InputText id="username" value={username} label="username" placeholder="Input user Username" name="username" type="username" height="40px" onChange={onChange} /><br />
       <InputText id="password" value={password} label="password" placeholder="Input user Password" name="password" type="password" height="40px" onChange={onChange} /><br />
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <ClickButton style={LoginbuttonStyle} onClick={onSubmit} id="loginbutton" name="loginbutton" buttonText="Login" />
